@@ -1,8 +1,5 @@
-from django.shortcuts import render
-from django.http import JsonResponse
 from django.contrib.auth.models import User
-from .models import Product
-from .serializers import ProductSerializer, UserSerializer, UserSerializerWithToken
+from base.serializers import UserSerializer, UserSerializerWithToken
 
 # rest_framework.
 from rest_framework import status
@@ -37,20 +34,6 @@ def getRoutes(request):
     return Response('Hello')
 
 
-@api_view(['GET'])
-def getProducts(request):
-    products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
-    return Response(serializer.data)
-
-
-@api_view(['GET'])
-def getProduct(request, pk):
-    product = Product.objects.get(_id=pk)
-    serializer = ProductSerializer(product, many=False)
-    return Response(serializer.data)
-
-
 # user view
 @api_view(['POST'])
 def registerUser(request):
@@ -67,6 +50,26 @@ def registerUser(request):
     except:
         message = {'detail': 'User with this email already exist'}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateUserProfile(request):
+    user = request.user
+    serializer = UserSerializerWithToken(user, many=False)
+
+    data = request.data
+
+    user.first_name = data['name']
+    user.username = data['email']
+    user.email = data['email']
+
+    if data['password'] != '':
+        user.password = make_password(data['password'])
+
+    user.save()
+
+    return Response(serializer.data)
 
 
 @api_view(['GET'])

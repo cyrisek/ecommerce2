@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
 
 
-    'base',
+    'base.apps.BaseConfig',
 ]
 
 REST_FRAMEWORK = {
