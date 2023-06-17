@@ -4,24 +4,24 @@ import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "../components/FormContainer";
 import CheckoutSteps from "../components/CheckoutSteps";
-import { saveShippingAdress } from "../actions/cartActions";
+import { saveShippingAddress } from "../actions/cartActions";
 
 function ShippingScreen() {
   const cart = useSelector((state) => state.cart);
-  const { shippingAdress } = cart;
+  const { shippingAddress } = cart;
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
-  const [adress, setAdress] = useState(shippingAdress.adress);
-  const [city, setCity] = useState(shippingAdress.city);
-  const [postalCode, setPostalCode] = useState(shippingAdress.postalCode);
-  const [country, setCountry] = useState(shippingAdress.country);
+  const [address, setAddress] = useState(shippingAddress.address);
+  const [city, setCity] = useState(shippingAddress.city);
+  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
+  const [country, setCountry] = useState(shippingAddress.country);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShippingAdress({ adress, city, postalCode, country }));
+    dispatch(saveShippingAddress({ address, city, postalCode, country }));
     navigate("/payment");
   };
   return (
@@ -29,14 +29,14 @@ function ShippingScreen() {
       <CheckoutSteps step1 step2 />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
-        <Form.Group controlId="adress">
-          <Form.Label>Adress</Form.Label>
+        <Form.Group controlId="address">
+          <Form.Label>address</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="Enter Adress"
-            value={adress ? adress : ""}
-            onChange={(e) => setAdress(e.target.value)}
+            placeholder="Enter address"
+            value={address ? address : ""}
+            onChange={(e) => setAddress(e.target.value)}
           ></Form.Control>
         </Form.Group>
         <Form.Group controlId="city">

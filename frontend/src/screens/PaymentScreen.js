@@ -8,7 +8,7 @@ import { savePaymentMethod } from "../actions/cartActions";
 
 function PaymentScreen() {
   const cart = useSelector((state) => state.cart);
-  const { shippingAdress } = cart;
+  const { shippingAddress } = cart;
 
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ function PaymentScreen() {
 
   const [paymentMethod, setPaymentMethod] = useState("PayPal");
 
-  if (!shippingAdress.adress) {
+  if (!shippingAddress.address) {
     navigate("/shipping");
   }
 

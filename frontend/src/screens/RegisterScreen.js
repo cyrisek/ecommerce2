@@ -57,7 +57,7 @@ function RegisterScreen() {
         </Form.Group>
 
         <Form.Group controlId="email">
-          <Form.Label>Email Adress</Form.Label>
+          <Form.Label>Email Address</Form.Label>
           <Form.Control
             required
             type="email"
