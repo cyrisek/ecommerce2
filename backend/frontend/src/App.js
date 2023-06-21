@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,8 +14,11 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
+import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
 
 function App() {
   return (
@@ -32,10 +35,17 @@ function App() {
             <Route path="/profile" Component={ProfileScreen} />
             <Route path="/placeorder" Component={PlaceOrderScreen} />
             <Route path="/order/:id" Component={OrderScreen} />
+
             <Route path="/shipping" Component={ShippingScreen} />
             <Route path="/payment" Component={PaymentScreen} />
             <Route path="/admin/userlist" Component={UserListScreen} />
             <Route path="/admin/user/:id/edit" Component={UserEditScreen} />
+            <Route path="/admin/productlist" Component={ProductListScreen} />
+            <Route path="/admin/orderlist" Component={OrderListScreen} />
+            <Route
+              path="/admin/products/:id/edit"
+              Component={ProductEditScreen}
+            />
           </Routes>
         </Container>
       </main>
