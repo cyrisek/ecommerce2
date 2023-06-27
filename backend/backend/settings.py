@@ -29,6 +29,8 @@ PGPASSWORD = os.environ.get('PGPASSWORD')
 PGPORT = os.environ.get('PGPORT')
 PGUSER = os.environ.get('PGUSER')
 PGDATABASE = os.environ.get('PGDATABASE')
+AWS_S3_ACCESS = os.environ.get('AWS_S3_ACCESS')
+AWS_S3_SECRET = os.environ.get('AWS_S3_SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
 
     "corsheaders",
     'rest_framework',
+    'storages',
 
 
     'base.apps.BaseConfig',
@@ -204,3 +207,13 @@ CORS_ALLOWED_ORIGINS_ALL = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
+
+
+# media files
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_S3_ACCESS_KEY_ID = AWS_S3_ACCESS
+AWS_S3_SECRET_ACCESS_KEY = AWS_S3_SECRET
+AWS_STORAGE_BUCKET_NAME = 'mattshop-bucket'
+AWS_S3_REGION_NAME = 'eu-west-2'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
