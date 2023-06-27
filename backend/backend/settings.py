@@ -31,7 +31,7 @@ PGUSER = os.environ.get('PGUSER')
 PGDATABASE = os.environ.get('PGDATABASE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
